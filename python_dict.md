@@ -2,7 +2,7 @@
 
 ## What Are Dictionaries?
 
-Dictionaries are unordered, mutable collections that store key-value pairs. They're defined with curly braces `{}` and use keys to access values instead of indices.
+Dictionary is an mutable, unordered (after Python 3.7, dictionaries are ordered) collection of data that stores data in the form of key-value pair. It is like hash tables in any other language. Each key in a dictionary is unique and immutable, and the values associated with the keys can be of any data type, such as numbers, strings, lists, or even other dictionaries. We can create a dictionary by using curly braces (`{}`).
 
 ```python
 person = {"name": "John", "age": 30, "city": "New York"}

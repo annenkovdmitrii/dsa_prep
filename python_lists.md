@@ -2,7 +2,7 @@
 
 ## What Are Lists?
 
-Lists are ordered, mutable collections that can store any data type. They're defined with square brackets `[]`.
+List is a built-in dynamic array which can store elements of different data types. It is an ordered collection of item, that is elements are stored in the same order as they were inserted into the list. List stores references to the objects (elements) rather than storing the actual data itself..
 
 ```python
 numbers = [1, 2, 3, 4, 5]
