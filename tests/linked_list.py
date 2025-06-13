@@ -57,7 +57,7 @@ class LinkedList:
         self.length += 1
         return True
     
-    def popfirst(self):
+    def pop_first(self):
         if self.length == 0:
             return None
         temp = self.head
@@ -75,7 +75,58 @@ class LinkedList:
         for _ in range(index): # we use _ because we are not using a variable in the foor loop
             temp = temp.next
         return temp
-                
+    
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp is not None:
+            temp.value = value
+            return True
+        return False
+    
+    def insert(self, index, value):
+        # Has to return True OR False
+        if index < 0 or index > self.length:
+            return False # if we successfully insert item, we return True, otherwise False
+        if index == 0:
+            return self.prepend(value) 
+        if index == self.length:
+            return self.append(value)
+        
+        new_node = Node(value)
+        temp = self.get(index-1)
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
+        
+    def remove(self, index):
+        if index < 0 or index >= self.length:
+            return None # if we remove a Node successfully we return it, otherwise we return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length - 1:
+            return self.pop()
+        
+        prev = self.get(index - 1)
+        temp = prev.next
+        prev.next = temp.next
+        temp.next = None
+        self.length -= 1
+        return temp
+    
+    def reverse(self):
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+        after = temp.next
+        before = None
+        for _ in range(sewalf.length):
+            after = temp.next
+            temp.next = before # reversing the pointer
+            before = temp # bringing up the pointer to the newxt Node
+            temp = after
+        
+        
 def check(expect, actual, message):
     print(message)
     print("EXPECTED:", expect)
@@ -157,4 +208,89 @@ if __name__ == "__main__":
     print('Tail:', my_linked_list.tail.value)
     print('Length:', my_linked_list.length, '\n')
     print('Linked List:')
+    my_linked_list.print_list()
+
+    print("\nPop_first TESTS:\n")
+    my_linked_list = LinkedList(2)
+    my_linked_list.append(1)
+    my_linked_list.print_list()
+
+    # (2) Items - Returns 2 Node
+    print(my_linked_list.pop_first().value)
+    # (1) Item -  Returns 1 Node
+    print(my_linked_list.pop_first().value)
+    # (0) Items - Returns None
+    print(my_linked_list.pop_first())
+
+    print("\nGet TESTS:\n")
+    my_linked_list = LinkedList(0)
+    my_linked_list.append(1)
+    my_linked_list.append(2)
+    my_linked_list.append(3)
+    my_linked_list.print_list()
+    print("my_linked_list.get(3).value = ", my_linked_list.get(3).value)
+
+    print("\nSet_value TESTS:\n")
+    my_linked_list = LinkedList(11)
+    my_linked_list.append(3)
+    my_linked_list.append(23)
+    my_linked_list.append(7)
+
+    print('LL before set_value(1,4)):')
+    my_linked_list.print_list()
+
+    my_linked_list.set_value(1,4)
+
+    print('\nLL after set_value(1,4):')
+    my_linked_list.print_list()
+
+    print("\nInsert TESTS:\n")
+    my_linked_list = LinkedList(1)
+    my_linked_list.append(3)
+
+
+    print('LL before insert():')
+    my_linked_list.print_list()
+
+
+    my_linked_list.insert(1,2)
+
+    print('\nLL after insert(2) in middle:')
+    my_linked_list.print_list()
+
+
+    my_linked_list.insert(0,0)
+
+    print('\nLL after insert(0) at beginning:')
+    my_linked_list.print_list()
+
+
+    my_linked_list.insert(4,4)
+
+    print('\nLL after insert(4) at end:')
+    my_linked_list.print_list()
+
+    print("\nRemove TESTS:\n")
+    my_linked_list = LinkedList(1)
+    my_linked_list.append(2)
+    my_linked_list.append(3)
+    my_linked_list.append(4)
+    my_linked_list.append(5)
+
+    print('LL before remove():')
+    my_linked_list.print_list()
+
+    print('\nRemoved node:')
+    print(my_linked_list.remove(2).value)
+    print('LL after remove() in middle:')
+    my_linked_list.print_list()
+
+    print('\nRemoved node:')
+    print(my_linked_list.remove(0).value)
+    print('LL after remove() of first node:')
+    my_linked_list.print_list()
+
+    print('\nRemoved node:')
+    print(my_linked_list.remove(2).value)
+    print('LL after remove() of last node:')
     my_linked_list.print_list()
