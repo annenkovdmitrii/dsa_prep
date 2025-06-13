@@ -143,3 +143,25 @@ for a, b in zip([1, 2, 3, 4], [10, 20]):
 print("Stops at shortest list")
 
 # %%
+print("\nComparing Two Strings for Anagrams")
+
+print("\nBasic Approach")
+
+str1 = "Listen"
+print("str1 =", str1)
+str2 = "Silent"
+print("str2 =", str2)
+
+str1 = list(str1.upper())
+str2 = list(str2.upper())
+str1.sort(), str2.sort()
+
+print("Sorted str1 =", str1)
+print("Sorted str2 =", str2)
+
+if(str1 == str2):
+    print("True")
+else:
+    print("False")
+
+# %%
