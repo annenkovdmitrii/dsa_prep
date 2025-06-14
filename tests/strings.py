@@ -154,7 +154,8 @@ print("str2 =", str2)
 
 str1 = list(str1.upper())
 str2 = list(str2.upper())
-str1.sort(), str2.sort()
+str1.sort() # Uses TimeSort
+str2.sort()
 
 print("Sorted str1 =", str1)
 print("Sorted str2 =", str2)
@@ -164,4 +165,134 @@ if(str1 == str2):
 else:
     print("False")
 
+#%%
+print("\nChecking for Palindrome Using Extended Slicing Technique")
+
+str1 = "Kayak".lower()
+print("str1 =", str1)
+str2 = "kayak".lower()
+print("str2 =", str2)
+
+
+if(str1 == str2[::-1]):
+    print("if(str1 == str2[::-1]): True")
+else:
+    print("if(str1 == str2[::-1]):False")
+    
 # %%
+print("\nChecking for Palindrome Using Extended Slicing Technique")
+
+string = "P r ogramm in g "
+print(f"string =\"{string}\"")
+print("string.count(' ') =",string.count(' '))
+
+# %%
+print("\nCounting Digits, Letters, and Spaces in a String")
+
+# Importing Regular Expressions Library
+import re
+print("import re")
+
+name = 'Python is 1'
+print("name = ", name)
+
+digitCount = re.sub("[^0-9]", "", name)
+print("digitCount =", digitCount)
+letterCount = re.sub("[^a-zA-Z]", "", name)
+print("letterCount =", letterCount)
+spaceCount = re.findall("[ \n]", name)
+print("spaceCount =", spaceCount)
+
+print("len(digitCount) =", len(digitCount))
+print("len(letterCount) =", len(letterCount))
+print("len(spaceCount) =", len(spaceCount))
+
+# %%
+print("\nCounting Special Characters in a String")
+print("spChar = \"!@#$%^&*()\"")
+spChar = "!@#$%^&*()"
+
+count = re.sub('[\w]+', '', spChar)
+print(len(count))
+
+# %%
+print("\nRemoving All Whitespace in a String")
+print("string = \"C O D E\"")
+string = "C O D E"
+spaces = re.compile(r'\s+')
+result = re.sub(spaces, '', string)
+print(result)
+# %%
+print("\nBuilding a Pyramid in Python")
+
+floors = 10
+h = 2*floors-1
+for i in range(1, 2*floors, 2):
+    print('{:^{}}'.format('*'*i, h))
+
+# %%
+print("\nRandomizing the Items of a List in Python")
+print("from random import shuffle\n")
+from random import shuffle
+
+lst = ['Python', 'is', 'Easy']
+print("lst before shuffle:",lst)
+shuffle(lst)
+print("lst after shuffle:",lst)
+
+# %%
+print("\nFind the Largest Element in a List")
+
+def find_largest_element(lst):
+    return max(lst)
+
+# Example usage:
+print(find_largest_element([1, 2, 3, 4, 5]))
+
+# %%
+print("\nRemove Duplicates from a List:\n")
+
+def remove_duplicates(lst):
+    return list(set(lst))
+
+# Example usage:
+print(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))
+
+# %%
+print("\nFactorial of a Number:\n")
+
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+
+print("def factorial(n):\n\tif n == 0:\n\t\treturn 1\n\treturn n * factorial(n - 1)")
+
+# Example usage:
+print("\nfactorial(5) =", factorial(5))
+
+# %%
+print("\nMerge Two Sorted Lists:\n")
+
+def merge_sorted_lists(lst1, lst2):
+    return sorted(lst1 + lst2)
+
+print("def merge_sorted_lists(lst1, lst2):\n\treturn sorted(lst1 + lst2)\n")
+# Example usage:
+
+print("merge_sorted_lists([1, 3, 5], [2, 4, 6]) =", merge_sorted_lists([1, 3, 5], [2, 4, 6]))
+# %%
+print("\nFind the First Non-Repeating Character:\n")
+
+def first_non_repeating_character(s):
+    for i in s:
+        if s.count(i) == 1:
+            return i
+    return None
+
+print("def first_non_repeating_character(s):\n\tfor i in s:\n\t\tif s.count(i) == 1:\n\t\t\treturn i\n\treturn None")
+
+# Example usage:
+print("\nfirst_non_repeating_character(\"swiss\") =", first_non_repeating_character("swiss"))
+# %%
+
