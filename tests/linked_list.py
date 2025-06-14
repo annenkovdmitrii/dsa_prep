@@ -2,6 +2,10 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.next = None
+        
+    def print_node(self):
+        next_val = self.next.value if self.next else None
+        print(f"Node({self.value}) | Next: {next_val}")
 
 class LinkedList:
     def __init__(self, value):
