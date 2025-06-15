@@ -106,7 +106,7 @@ class DoublyLinkedList:
             return False # Wasn't able to insert
         if index == 0:
             return self.prepend(value)
-        if index == self.length - 1:
+        if index == self.length:
             return self.append(value)
         
         new_node = Node(value)
