@@ -42,13 +42,31 @@ print(count)
 #%%
 print("Fibonacci Series")
 
+# def fibonacci(n):
+#     a, b = 0, 1
+#     for _ in range(n):
+#         print(a, end=', ' if _ < n-1 else '\n')
+#         a, b = b, a + b
+
 def fibonacci(n):
     a, b = 0, 1
     for _ in range(n):
-        print(a, end=', ' if _ < n-1 else '\n')
         a, b = b, a + b
+    return a
 
-fibonacci(20)
+print(fibonacci(10))
+
+#%%
+print("Recursive Fibonacci")
+
+def fibonacci_r(n):
+    if (n <= 1) :
+        return n
+    else:
+        return fibonacci_r(n-1) + fibonacci_r(n - 2)
+    
+
+print(fibonacci_r(10))
 #%%
 print("Finding the Maximum Number in a List")
 
@@ -287,7 +305,7 @@ print("\nFind the First Non-Repeating Character:\n")
 def first_non_repeating_character(s):
     for i in s:
         if s.count(i) == 1:
-            return i
+            return i  
     return None
 
 print("def first_non_repeating_character(s):\n\tfor i in s:\n\t\tif s.count(i) == 1:\n\t\t\treturn i\n\treturn None")
