@@ -66,6 +66,26 @@ class BinarySearchTree:
                     return True
                 temp = temp.right # moved to the right node
                 
+    def __r_insert(self, current_node, value):
+        if current_node == None:
+            return Node(value) # creates new node 
+        if value < current_node.value:
+            current_node.left = self.__r_insert(current_node.left, value) # assigns new node (if inserted)
+        if value > current_node.value:
+            current_node.right = self.__r_insert(current_node.right, value)
+        # if value == current_node.value
+        # then we just return the current node at the end
+        # without inserting the value 
+        return current_node
+    
+    def r_insert(self, value):
+        # No need to return anything, but need to account an endge case 
+        # when the tree is empty
+        if self.root == None:
+            self.root = Node(value)
+            
+        self.__r_insert(self.root, value)
+                
     def contains(self, value):
         temp = self.root
         while temp is not None:
@@ -76,6 +96,21 @@ class BinarySearchTree:
             else:
                 return True # value is found
         return False # value is not found (we reached the end of the tree)
+    
+    def __r_contains(self, current_node, value):
+        if current_node == None:
+            return False
+        if value == current_node.value: 
+            return True
+        if value < current_node.value:
+            return self.__r_contains(current_node.left, value)
+        if value > current_node.value:
+            return self.__r_contains(current_node.right, value)
+    
+    def r_contains(self, value):
+        return self.__r_contains(self.root, value)
+    
+
     
     # Method 1: In-order traversal (prints values in sorted order)
     def print_tree(self):
@@ -328,6 +363,26 @@ if __name__ == "__main__":
     bst.insert(10)
     bst.insert(5)
     result = bst.contains(15)
+    check(False, result, "Check if 15 exists:")
+    
+    
+    print("\n----- Test: R_Contains Existing Value -----\n")
+    bst = BinarySearchTree()
+    bst.insert(10)
+    bst.insert(5)
+    bst.insert(15)
+    result = bst.r_contains(10)
+    check(True, result, "Check if 10 exists:")
+    result = bst.r_contains(5)
+    check(True, result, "Check if 5 exists:")
+    result = bst.r_contains(15)
+    check(True, result, "Check if 15 exists:")
+
+    print("\n----- Test: R_Contains Not Existing Value -----\n")
+    bst = BinarySearchTree()
+    bst.insert(10)
+    bst.insert(5)
+    result = bst.r_contains(15)
     check(False, result, "Check if 15 exists:")
 
     print("\n----- Test: Contains with Duplicate Inserts -----\n")
