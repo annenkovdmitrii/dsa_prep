@@ -83,7 +83,7 @@ class BinarySearchTree:
         # when the tree is empty
         if self.root == None:
             self.root = Node(value)
-            
+        
         self.__r_insert(self.root, value)
                 
     def contains(self, value):
@@ -110,7 +110,11 @@ class BinarySearchTree:
     def r_contains(self, value):
         return self.__r_contains(self.root, value)
     
-
+    def __delete_node(self, current_node, value):
+        pass
+    
+    def delete_node(self, value):
+        self.root = self.__delete_node(self.root, value)
     
     # Method 1: In-order traversal (prints values in sorted order)
     def print_tree(self):
@@ -336,6 +340,52 @@ if __name__ == "__main__":
     bst = BinarySearchTree()
     bst.insert(10)
     result = bst.insert(5)
+    check(True, result, "Insert 5, should succeed:")
+    check(5, bst.root.left.value, "Root's left value after inserting 5:")
+    check(None, bst.root.left.left, "Root's left-left child after inserting 5:")
+    check(None, bst.root.left.right, "Root's left-right child after inserting 5:")
+    
+    print("\n----- Test: R_Insert to Empty Tree -----\n")
+    bst = BinarySearchTree()
+    result = bst.r_insert(5)
+    check(True, result, "Insert 5, should succeed:")
+    check(5, bst.root.value, "Root value after inserting 5:")
+    check(None, bst.root.left, "Root's left child after inserting 5:")
+    check(None, bst.root.right, "Root's right child after inserting 5:")
+
+    print("\n----- Test: R_Insert to Existing Tree -----\n")
+    bst = BinarySearchTree()
+    bst.r_insert(10)
+    bst.r_insert(5)
+    bst.r_insert(15)
+    result = bst.r_insert(3)
+    check(True, result, "Insert 3, should succeed:")
+    check(3, bst.root.left.left.value, "Root's left-left value after inserting 3:")
+    check(None, bst.root.left.left.left, "Root's left-left-left child after inserting 3:")
+    check(None, bst.root.left.left.right, "Root's left-left-right child after inserting 3:")
+
+    print("\n----- Test: R_Insert Duplicate Value -----\n")
+    bst = BinarySearchTree()
+    bst.r_insert(10)
+    bst.r_insert(5)
+    result = bst.r_insert(5)
+    check(False, result, "Insert 5 again, should fail:")
+    check(None, bst.root.left.left, "Root's left-left child after inserting 5 again:")
+    check(None, bst.root.left.right, "Root's left-right child after inserting 5 again:")
+
+    print("\n----- Test: R_Insert Greater Than Root -----\n")
+    bst = BinarySearchTree()
+    bst.r_insert(10)
+    result = bst.r_insert(15)
+    check(True, result, "Insert 15, should succeed:")
+    check(15, bst.root.right.value, "Root's right value after inserting 15:")
+    check(None, bst.root.right.left, "Root's right-left child after inserting 15:")
+    check(None, bst.root.right.right, "Root's right-right child after inserting 15:")
+
+    print("\n----- Test: R_Insert Less Than Root -----\n")
+    bst = BinarySearchTree()
+    bst.r_insert(10)
+    result = bst.r_insert(5)
     check(True, result, "Insert 5, should succeed:")
     check(5, bst.root.left.value, "Root's left value after inserting 5:")
     check(None, bst.root.left.left, "Root's left-left child after inserting 5:")
